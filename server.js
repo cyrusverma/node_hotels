@@ -28,7 +28,7 @@ app.use('/menu',menuItemRoutes);
 
 const personRoutes=require('./routes/personRoutes');
 app.use('/person',personRoutes);
-
+// comment added
 const PORT =9090 ;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
