@@ -1,6 +1,8 @@
 const mongoose=require('mongoose');
+require('dotenv').config();
 //define mogodb connection URL
-const  mongoURL='mongodb://127.0.0.1:27017/hotels'
+//const  mongoURL=process.env.DB_URL_LOCAL // local connection
+const mongoURL=process.env.DB_URL;
 
 //setup connections
 mongoose.connect(mongoURL,{
@@ -20,5 +22,6 @@ db.on('error',(err)=>{
 db.on('disconnected',()=>{
     console.log('mongDB diconnected ');
 });
+// exports database server
 module.exports=db;
     

@@ -2,6 +2,7 @@ const express = require('express');
 
 const app = express();
 const db=require('./db');
+require('dotenv').config();
 const person=require('./models/person');
 const MenuItem=require('./models/MenuItem');
 
@@ -29,7 +30,7 @@ app.use('/menu',menuItemRoutes);
 const personRoutes=require('./routes/personRoutes');
 app.use('/person',personRoutes);
 // comment added
-const PORT =9090 ;
+const PORT =process.env.PORT || 9090;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
