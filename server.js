@@ -1,4 +1,5 @@
 const express = require('express');
+const fs=require('fs');
 
 const app = express();
 const db=require('./db');
@@ -9,21 +10,18 @@ const MenuItem=require('./models/MenuItem');
 const bodyParser=require('body-parser'); //use to deal  with the reacived data in postmethod it parses the incoming data from the frontend method
 app.use(bodyParser.json()); //req.body
 
+
+
+//middleware function 
+const logRequest=(req,res,next)=>{
+    console.log(`[${new Date().toLocaleString()}] Request made to :${req.originalUrl}`);
+
+next(); //move to next phase
+}
+app.use(logRequest);
 app.get('/', (req, res) => {
     res.send("Hello world! Welcome to my website home page.");
 });
-
-app.get('/chicken', (req, res) => {
-    res.send("Hello! Do you really want chicken?");
-});
-app.get('/southindianfood', (req, res) => {
-    res.send("welcome to  south Indian Food corner🥗🍗🍖🍠 ");
-});
-app.get('/southindianfood/idli', (req, res) => {
-    res.send("welcome to  idili corener ");
-});
-
-
  const menuItemRoutes=require('./routes/menuItemRoutes');
 app.use('/menu',menuItemRoutes);
 
